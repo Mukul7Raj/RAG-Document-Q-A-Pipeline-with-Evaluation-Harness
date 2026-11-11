@@ -336,3 +336,4 @@ tests/test_vectorstore.py::test_faiss_mmr_search PASSED                  [100%]
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
+# RAG-Document-Q-A-Pipeline-with-Evaluation-Harness
