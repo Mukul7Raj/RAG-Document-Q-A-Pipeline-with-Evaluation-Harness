@@ -1,0 +1,25 @@
+# Enterprise AI Governance and Model Alignment Guidelines
+Standard: ISO-AI-2026-GOV
+Revision: 2.1
+
+## 1. Core Principles of Constitutional AI
+All large language model applications must operate under three fundamental constitutional constraints:
+1. Grounded Factual Truthfulness: Models must not generate unsubstantiated factual assertions. When factual grounding cannot be verified through retrieved system knowledge, the model is mandated to explicitly declare uncertainty or state lack of information.
+2. Harm Mitigation and Safety Refusal: Models must rigorously refuse any request that instructs, facilitates, or optimizes CBRN (Chemical, Biological, Radiological, Nuclear) hazards, self-harm, cyberwarfare exploit creation, or severe personal harassment.
+3. Transparent Attribution: Factual answers derived from corporate knowledge bases must furnish direct source references to enable human auditability.
+
+## 2. Prompt Injection and Jailbreak Defenses
+To prevent adversarial prompt injection attacks from compromising document analysis pipelines:
+- Dual Delimiter Isolation: Retrieved document chunks must be encapsulated within randomized cryptographically-derived XML delimiters (e.g., `<doc_block_uuid>...</doc_block_uuid>`) to prevent context escape.
+- Semantic Input Sanitizer: Inbound user prompts are analyzed by a lightweight safety classifier before dispatch to the primary LLM. Any prompt attempting role hijacking, system prompt override, or base64 encoded instruction injection is intercepted with a generic safety advisory.
+- Post-Generation Output Filter: System responses are evaluated against strict regex and hallucination detection scoring before transmission to client endpoints.
+
+## 3. Personally Identifiable Information (PII) Scrubbing
+In accordance with GDPR, CCPA, and HIPAA compliance:
+- All raw documents ingested into vector stores must pass through automated entity recognition to scrub or tokenize PII.
+- Social Security Numbers, national identity cards, credit card numbers, and patient medical record numbers must be masked using 256-bit cryptographic salted tokens.
+- Vector embeddings must never be trained directly on unredacted confidential records.
+
+## 4. Continuous Red Teaming and Vulnerability Audits
+Production AI pipelines undergo bi-weekly automated red teaming evaluations consisting of 5,000 synthetic adversarial probes.
+Any pipeline whose prompt injection bypass rate exceeds 1.5% or whose hallucination rate on benchmark evaluations exceeds 5.0% is instantly flagged for human intervention and roll-back to previous known-good model checkpoints.

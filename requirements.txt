@@ -1,0 +1,34 @@
+# Core Frameworks & API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+python-multipart>=0.0.12
+
+# Vector Store & Embeddings
+faiss-cpu>=1.9.0
+sentence-transformers>=3.0.0
+torch>=2.2.0
+transformers>=4.40.0
+numpy>=1.26.0
+
+# Document Ingestion & Parsers
+pypdf>=5.0.0
+python-docx>=1.1.0
+tiktoken>=0.8.0
+
+# LLM Providers & Tooling
+openai>=1.40.0
+
+# UI & Visualization
+streamlit>=1.38.0
+
+# Evaluation & Metrics
+scikit-learn>=1.5.0
+scipy>=1.14.0
+
+# Testing & Utilities
+pytest>=8.3.0
+httpx>=0.27.0
+pytest-asyncio>=0.24.0
+python-dotenv>=1.0.0

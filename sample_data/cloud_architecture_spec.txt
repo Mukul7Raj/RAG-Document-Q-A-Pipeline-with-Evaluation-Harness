@@ -1,0 +1,33 @@
+# Cloud Infrastructure & Microservices Architecture Specification
+Version: 3.4.0
+Status: Approved
+
+## 1. Overview and Core Topology
+Our production cloud infrastructure operates across multiple Availability Zones in us-east-1 and us-west-2. The backend topology adopts a decentralized microservices architecture deployed on managed Kubernetes (EKS) clusters. Inter-service communication is governed by an Istio Service Mesh enforcing mutual TLS (mTLS) with strict peer authentication.
+
+## 2. Service Discovery and Resiliency Patterns
+Each microservice registers with CoreDNS and Envoy sidecars for transparent service discovery. 
+To prevent cascading failures across downstream dependencies, services implement circuit breaking using Resilience4j:
+- Sliding Window Size: 100 consecutive requests.
+- Failure Rate Threshold: 50% error rate triggers the circuit breaker into an OPEN state.
+- Wait Duration in Open State: The circuit breaker remains OPEN for exactly 30 seconds before transitioning to HALF-OPEN.
+- Permitted Executions in Half-Open: 10 probe requests are permitted to test downstream recovery. If failure rate remains above 20%, it re-enters OPEN state.
+
+## 3. Rate Limiting and Traffic Management
+Edge ingress traffic is managed by Envoy Proxy backed by Redis for distributed rate limiting.
+- Algorithm: Token Bucket algorithm.
+- Standard Tier: Allows a baseline rate of 100 requests per second (rps) per API key, with a burst capacity of 20 tokens.
+- Enterprise Tier: Allows up to 1,000 requests per second with a burst capacity of 100 tokens.
+- Excess Requests: When quota is exhausted, the gateway immediately returns HTTP 429 (Too Many Requests) with a `Retry-After` header specifying milliseconds until the next token replenishment.
+
+## 4. Asynchronous Messaging and Event Streaming
+Asynchronous inter-service communication utilizes Apache Kafka clusters with three-broker replication (min.insync.replicas=2).
+- Topics are partitioned by entity UUID to ensure strict per-entity ordering.
+- Message retention is configured for 7 days on active event streams and 30 days for billing audit logs.
+- Dead Letter Queues (DLQ): Any message that fails processing after 5 retry attempts with exponential backoff (base 200ms, max 5000ms) is forwarded to a dedicated Dead Letter Queue for manual operator intervention.
+
+## 5. Observability and Distributed Tracing
+All services export standardized telemetry using OpenTelemetry SDKs:
+- Distributed Tracing: Traces propagate W3C TraceContext headers across HTTP and Kafka boundaries. Traces are ingested by Jaeger with a 10% adaptive sampling rate in production and 100% in staging.
+- Metrics: Prometheus scrapes `/metrics` endpoints every 15 seconds.
+- Logging: Structured JSON logs are shipped via FluentBit to OpenSearch with a mandatory retention policy of 90 days.
