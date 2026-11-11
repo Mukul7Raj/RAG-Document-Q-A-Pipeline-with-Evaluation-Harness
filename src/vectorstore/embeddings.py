@@ -188,3 +188,4 @@ def get_embedding_model(
     else:
         logger.warning("Unknown embedding provider '%s', defaulting to HuggingFace", provider)
         return HuggingFaceEmbeddingModel(model_name=model_name, device=device, normalize=normalize)
+

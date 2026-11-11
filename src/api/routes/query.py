@@ -73,3 +73,4 @@ async def query_pipeline(
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Pipeline query error: {str(e)}")
+

@@ -32,3 +32,4 @@ services:
     depends_on:
       - rag-api
     restart: unless-stopped
+

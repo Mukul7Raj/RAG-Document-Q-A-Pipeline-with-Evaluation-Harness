@@ -319,3 +319,4 @@ with tab_docs:
         st.dataframe(doc_table, use_container_width=True)
     else:
         st.info("Vector store is empty. Ingest documents or click 'Load Sample Documents' in the sidebar.")
+

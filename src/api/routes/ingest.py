@@ -80,3 +80,4 @@ async def ingest_files_endpoint(
     finally:
         # Cleanup temporary files
         shutil.rmtree(temp_dir, ignore_errors=True)
+

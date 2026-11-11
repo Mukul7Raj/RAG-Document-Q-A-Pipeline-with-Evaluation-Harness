@@ -228,3 +228,4 @@ class DocumentChunker:
         """Splits text on sentence boundaries."""
         sentences = re.split(r'(?<=[.!?])\s+', text)
         return self._merge_splits(sentences, " ", chunk_size, chunk_overlap)
+

@@ -62,3 +62,4 @@ def test_document_chunker_token_strategy():
 def test_chunker_invalid_overlap():
     with pytest.raises(ValueError):
         DocumentChunker(chunk_size=100, chunk_overlap=150)
+

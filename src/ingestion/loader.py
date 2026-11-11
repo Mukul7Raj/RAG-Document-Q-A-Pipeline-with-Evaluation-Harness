@@ -167,3 +167,4 @@ class DocumentLoader:
         else:
             docs.append(LoadedDocument(text=str(data), metadata=base_meta))
         return docs
+

@@ -274,3 +274,4 @@ class FAISSVectorStore:
             "total_tokens_indexed": total_tokens,
             "avg_chunk_tokens": round(total_tokens / len(self.chunks), 1) if self.chunks else 0,
         }
+

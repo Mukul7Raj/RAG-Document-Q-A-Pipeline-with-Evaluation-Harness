@@ -335,3 +335,4 @@ tests/test_vectorstore.py::test_faiss_mmr_search PASSED                  [100%]
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+

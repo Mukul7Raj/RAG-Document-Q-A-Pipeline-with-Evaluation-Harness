@@ -90,3 +90,4 @@ def test_evaluation_run_endpoint(client):
     assert data["total_queries"] > 0
     assert "metrics" in data
     assert "performance" in data
+

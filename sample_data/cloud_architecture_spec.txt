@@ -31,3 +31,4 @@ All services export standardized telemetry using OpenTelemetry SDKs:
 - Distributed Tracing: Traces propagate W3C TraceContext headers across HTTP and Kafka boundaries. Traces are ingested by Jaeger with a 10% adaptive sampling rate in production and 100% in staging.
 - Metrics: Prometheus scrapes `/metrics` endpoints every 15 seconds.
 - Logging: Structured JSON logs are shipped via FluentBit to OpenSearch with a mandatory retention policy of 90 days.
+

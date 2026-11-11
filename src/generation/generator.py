@@ -187,3 +187,4 @@ class AnswerGenerator:
         prompt_cost = (prompt_tokens / 1_000_000.0) * pricing["prompt"]
         completion_cost = (completion_tokens / 1_000_000.0) * pricing["completion"]
         return prompt_cost + completion_cost
+

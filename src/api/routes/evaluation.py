@@ -32,3 +32,4 @@ async def run_evaluation_benchmark(
         return summary.to_dict()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Evaluation execution failed: {str(e)}")
+

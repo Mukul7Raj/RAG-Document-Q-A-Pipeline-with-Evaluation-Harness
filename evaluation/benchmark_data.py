@@ -112,3 +112,4 @@ DEFAULT_BENCHMARK_SUITE: List[BenchmarkQuery] = [
 def get_default_benchmark_dataset() -> List[BenchmarkQuery]:
     """Returns the comprehensive benchmark evaluation dataset."""
     return list(DEFAULT_BENCHMARK_SUITE)
+

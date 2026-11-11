@@ -289,3 +289,4 @@ class RAGPipeline:
             "strict_grounding": settings.STRICT_GROUNDING,
         })
         return stats
+

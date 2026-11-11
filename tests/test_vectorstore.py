@@ -77,3 +77,4 @@ def test_faiss_mmr_search():
 
     mmr_results = store.search_mmr(q_vec, top_k=3, fetch_k=5, lambda_mult=0.6)
     assert len(mmr_results) == 3
+

@@ -172,3 +172,4 @@ class RAGMetrics:
             if any(cls.normalize_text(kw) in norm_chunk for kw in expected_keywords):
                 return 1.0 / rank
         return 0.0
+

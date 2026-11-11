@@ -12,3 +12,4 @@ __all__ = [
     "get_default_benchmark_dataset",
     "BenchmarkQuery",
 ]
+

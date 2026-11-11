@@ -21,3 +21,4 @@ def set_pipeline(pipeline: RAGPipeline):
     """Sets custom pipeline instance (useful for testing or reconfiguration)."""
     global _pipeline_instance
     _pipeline_instance = pipeline
+

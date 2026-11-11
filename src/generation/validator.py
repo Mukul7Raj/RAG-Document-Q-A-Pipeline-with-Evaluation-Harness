@@ -201,3 +201,4 @@ class OutputValidator:
             return 1.0
         intersection = s_tokens.intersection(context_tokens)
         return len(intersection) / len(s_tokens)
+

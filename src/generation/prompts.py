@@ -93,3 +93,4 @@ class PromptManager:
             "user_prompt": user_content,
             "context_count": len(search_results)
         }
+

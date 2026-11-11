@@ -42,3 +42,4 @@ async def clear_documents(
     pipeline.vector_store.clear()
     pipeline.save_index()
     return {"message": "FAISS index cleared successfully."}
+
